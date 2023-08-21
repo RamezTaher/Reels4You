@@ -1,4 +1,4 @@
-import { errorHandler } from "@middlewares/ErrorMiddleware"
+import { errorHandler } from "@middlewares/error.middlewares"
 import { Express } from "express"
 
 const initRoutes = (app: Express) => {
