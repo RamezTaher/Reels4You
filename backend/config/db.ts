@@ -1,19 +1,14 @@
-import mongoose, { ConnectOptions } from "mongoose"
-import winston from "winston"
+import mongoose from "mongoose"
 
 const initDB = async () => {
+  mongoose.set("strictQuery", false)
   const uri = process.env.MONGO_URI || ""
   try {
-    const options = {
-      useUnifiedTopology: true,
-      useNewUrlParser: true,
-      useCreateIndex: true,
-    } as ConnectOptions
-    const conn = await mongoose.connect(uri, options)
+    const conn = await mongoose.connect(uri)
 
-    winston.info(`Connected to ${conn.connection.host}...`)
+    console.log(`Connected to ${conn.connection.host}...`)
   } catch (error) {
-    winston.error(error)
+    console.log(error)
     process.exit(1)
   }
 }
